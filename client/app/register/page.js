@@ -38,14 +38,11 @@ function RegisterForm() {
 
         setLoading(true);
 
-        // Use the live API URL from environment variables
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "${API_URL}";
-
-        const registerRequest = axios.post(`${apiUrl}/api/users`, { name, email, password })
-            .then((res) => {
-                setUserInfo(res.data);
-                return res.data;
-            });
+        const registerRequest = axios.post(`${API_URL}/api/users`, { name, email, password })
+                .then((res) => {
+                    setUserInfo(res.data);
+                    return res.data;
+                });
 
         toast.promise(
             registerRequest,

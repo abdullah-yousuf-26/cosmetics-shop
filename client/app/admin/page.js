@@ -75,7 +75,8 @@ export default function AdminPage() {
     // --- 3. Data Fetching ---
     const fetchProducts = async () => {
         try {
-            const { data } = await axios.get("${API_URL}/api/products");
+            // Change "${API_URL}" to `${API_URL}`
+            const { data } = await axios.get(`${API_URL}/api/products`);
             setProducts(data);
         } catch (err) { console.error(err); }
     };
@@ -84,7 +85,8 @@ export default function AdminPage() {
         try {
             if (!userInfo?.token) return;
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const { data } = await axios.get("${API_URL}/api/orders", config);
+            // Change "${API_URL}" to `${API_URL}`
+            const { data } = await axios.get(`${API_URL}/api/orders`, config);
             setOrders(data);
         } catch (err) { console.error("Order fetch failed:", err.response?.status); }
     };
@@ -159,15 +161,15 @@ export default function AdminPage() {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-        const finalData = { ...formData, images: [formData.image], skinType: ["All"], concern: ["Glow"] };
-        
-        const submitPromise = isEditing 
-            ? axios.put(`${API_URL}/api/products/${currentId}`, finalData, config)
-            : axios.post("${API_URL}/api/products", finalData, config);
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
+            const finalData = { ...formData, images: [formData.image], skinType: ["All"], concern: ["Glow"] };
+            
+            const submitPromise = isEditing 
+                ? axios.put(`${API_URL}/api/products/${currentId}`, finalData, config)
+                : axios.post(`${API_URL}/api/products`, finalData, config); // FIX HERE
 
         toast.promise(submitPromise, {
             loading: isEditing ? 'Updating product...' : 'Saving new product...',
