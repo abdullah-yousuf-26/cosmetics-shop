@@ -458,7 +458,7 @@ return (
                                     <tr key={user._id} className="hover:bg-purple-50/30 transition-all font-black">
                                         <td className="p-6 flex items-center gap-3">
                                             <div className="w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-black">
-                                                {user.name.charAt(0)}
+                                               {user.name ? user.name.charAt(0) : "U"}
                                             </div>
                                             {user.name}
                                         </td>
