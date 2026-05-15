@@ -17,7 +17,8 @@ const app = express();
 app.use(cors({
     origin: [
         'http://localhost:3000', 
-        'https://cosmetics-shop-wheat.vercel.app/'
+        'https://cosmetics-shop-wheat.vercel.app/',
+        'https://cosmetics-shop-3zwt.vercel.app'
     ], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
