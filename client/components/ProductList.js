@@ -12,7 +12,7 @@ export default function ProductList() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("${API_URL}/api/products");
+      const { data } = await axios.get(`${API_URL}/api/products`);
       setProducts(data);
     } catch (err) {
       console.error("Failed to fetch products");

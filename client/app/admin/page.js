@@ -135,7 +135,7 @@ export default function AdminPage() {
 
         const deliverPromise = axios.put(`${API_URL}/api/orders/${id}/deliver`, {}, config)
             .then(async () => {
-                const { data } = await axios.get("${API_URL}/api/orders", config);
+                const { data } = await axios.get(`${API_URL}/api/orders`, config);
                 setOrders(data); 
                 setShowOrderModal(false);
             });

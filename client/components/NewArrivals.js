@@ -26,7 +26,7 @@ const NewArrivals = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get("${API_URL}/api/products");
+        const { data } = await axios.get(`${API_URL}/api/products`);
         const latest = data
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 8);
