@@ -8,15 +8,17 @@ const userRoutes = require('./routes/userRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
-
 dotenv.config();
 
 // 1. Initialize app FIRST
 const app = express();
 
-// 2. Configure CORS immediately after app initialization
+// 2. Configure CORS with  live Vercel domain
 app.use(cors({
-    origin: 'http://localhost:3000', 
+    origin: [
+        'http://localhost:3000', 
+        'https://cosmetics-shop-3zwt.vercel.app'
+    ], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -30,15 +32,13 @@ app.use('/api/users', userRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/orders', orderRoutes);
 
-
-
 // 4. Connect to DB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB Connected...'.cyan.underline))
     .catch((err) => console.log(`❌ Error: ${err.message}`.red));
 
 app.get('/', (req, res) => {
-    res.send('Cosmetics API is running...');
+    res.send('Cosmetics API is running and connected to Vercel...');
 });
 
 const PORT = process.env.PORT || 5000;
