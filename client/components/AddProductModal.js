@@ -21,7 +21,7 @@ export default function AddProductModal() {
     data.append("image", file);
     setUploading(true);
 
-    const uploadPromise = axios.post("${API_URL}/api/upload", data, {
+    const uploadPromise = axios.post(`${API_URL}/api/upload`, data, {
       headers: { 
         "Content-Type": "multipart/form-data", 
         Authorization: `Bearer ${userInfo?.token}` 
@@ -48,7 +48,7 @@ export default function AddProductModal() {
     const productData = { ...formData, images: [image] };
     const config = { headers: { Authorization: `Bearer ${userInfo?.token}` } };
 
-    const savePromise = axios.post("${API_URL}/api/products", productData, config)
+    const savePromise = axios.post(`${API_URL}/api/products`, productData, config)
       .then(() => {
         // Optional: short delay before reload so they can see the success toast
         setTimeout(() => window.location.reload(), 1500);
