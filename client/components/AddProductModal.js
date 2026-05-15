@@ -11,6 +11,7 @@ export default function AddProductModal() {
   const [image, setImage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];

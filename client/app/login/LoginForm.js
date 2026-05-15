@@ -17,6 +17,7 @@ export default function LoginForm() {
     
     const redirect = searchParams.get("redirect") || "/";
     const { userInfo, setUserInfo } = useAuthStore();
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
     useEffect(() => {
         if (userInfo) {

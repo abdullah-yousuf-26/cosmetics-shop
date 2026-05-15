@@ -11,6 +11,7 @@ export default function ProfilePage() {
     const router = useRouter();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
     // 1. Protect the route: If not logged in, go to login
     useEffect(() => {

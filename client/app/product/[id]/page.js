@@ -14,6 +14,7 @@ export default function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const addToCart = useCartStore((state) => state.addToCart);
   const [qty, setQty] = useState(1);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   useEffect(() => {
     const fetchProduct = async () => {

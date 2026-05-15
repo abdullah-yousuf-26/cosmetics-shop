@@ -25,6 +25,7 @@ export default function AdminPage() {
     const [uploading, setUploading] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [showOrderModal, setShowOrderModal] = useState(false);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
     const initialState = {
         name: "", description: "", price: "", discountPrice: "", 

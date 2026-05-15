@@ -8,6 +8,7 @@ import toast from "react-hot-toast"; // Added import
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const { userInfo } = useAuthStore();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const fetchProducts = async () => {
     try {

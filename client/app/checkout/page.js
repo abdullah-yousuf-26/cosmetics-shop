@@ -19,6 +19,7 @@ export default function CheckoutPage() {
     const [paymentMethod, setPaymentMethod] = useState("COD");
     const [deliveryCharge, setDeliveryCharge] = useState(65);
     const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
     const subtotal = cart.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0);
 

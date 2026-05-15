@@ -11,6 +11,7 @@ const CategoryPage = () => {
   const { slug } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   const slugToCategory = {
     "lips": "Makeup",

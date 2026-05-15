@@ -5,6 +5,7 @@ import ProductCard from "./ProductCard";
 import { motion } from "framer-motion";
 
 // 1. Define ScrollReveal as its own reusable component outside
+
 export const ScrollReveal = ({ children }) => {
   return (
     <motion.div
@@ -17,6 +18,7 @@ export const ScrollReveal = ({ children }) => {
     </motion.div>
   );
 };
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
