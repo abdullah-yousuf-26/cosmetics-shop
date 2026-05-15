@@ -38,7 +38,7 @@ function RegisterForm() {
         setLoading(true);
 
         // Use the live API URL from environment variables
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "${API_URL}";
 
         const registerRequest = axios.post(`${apiUrl}/api/users`, { name, email, password })
             .then((res) => {

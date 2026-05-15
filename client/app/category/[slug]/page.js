@@ -31,7 +31,7 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         const categoryName = slugToCategory[slug];
-        const { data } = await axios.get(`http://localhost:5000/api/products?category=${categoryName}`);
+        const { data } = await axios.get(`${API_URL}/api/products?category=${categoryName}`);
         setProducts(data);
       } catch (error) {
         console.error("Fetch error:", error);

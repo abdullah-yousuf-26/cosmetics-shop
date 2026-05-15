@@ -74,7 +74,7 @@ export default function AdminPage() {
     // --- 3. Data Fetching ---
     const fetchProducts = async () => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/products");
+            const { data } = await axios.get("${API_URL}/api/products");
             setProducts(data);
         } catch (err) { console.error(err); }
     };
@@ -83,7 +83,7 @@ export default function AdminPage() {
         try {
             if (!userInfo?.token) return;
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const { data } = await axios.get("http://localhost:5000/api/orders", config);
+            const { data } = await axios.get("${API_URL}/api/orders", config);
             setOrders(data);
         } catch (err) { console.error("Order fetch failed:", err.response?.status); }
     };
@@ -92,7 +92,7 @@ export default function AdminPage() {
         try {
             if (!userInfo?.token) return;
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const { data } = await axios.get("http://localhost:5000/api/users", config);
+            const { data } = await axios.get("${API_URL}/api/users", config);
             setUsers(data);
         } catch (err) { console.error("User fetch failed."); }
     };
@@ -130,9 +130,9 @@ export default function AdminPage() {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
         setLoading(true);
 
-        const deliverPromise = axios.put(`http://localhost:5000/api/orders/${id}/deliver`, {}, config)
+        const deliverPromise = axios.put(`${API_URL}/api/orders/${id}/deliver`, {}, config)
             .then(async () => {
-                const { data } = await axios.get("http://localhost:5000/api/orders", config);
+                const { data } = await axios.get("${API_URL}/api/orders", config);
                 setOrders(data); 
                 setShowOrderModal(false);
             });
@@ -147,7 +147,7 @@ export default function AdminPage() {
     const deleteOrderHandler = async (id) => {
         if (window.confirm("Delete this order record permanently?")) {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const deletePromise = axios.delete(`http://localhost:5000/api/orders/${id}`, config)
+            const deletePromise = axios.delete(`${API_URL}/api/orders/${id}`, config)
                 .then(() => fetchOrders());
 
             toast.promise(deletePromise, {
@@ -165,8 +165,8 @@ export default function AdminPage() {
         const finalData = { ...formData, images: [formData.image], skinType: ["All"], concern: ["Glow"] };
         
         const submitPromise = isEditing 
-            ? axios.put(`http://localhost:5000/api/products/${currentId}`, finalData, config)
-            : axios.post("http://localhost:5000/api/products", finalData, config);
+            ? axios.put(`${API_URL}/api/products/${currentId}`, finalData, config)
+            : axios.post("${API_URL}/api/products", finalData, config);
 
         toast.promise(submitPromise, {
             loading: isEditing ? 'Updating product...' : 'Saving new product...',
@@ -183,7 +183,7 @@ export default function AdminPage() {
     const deleteHandler = async (id) => {
         if (window.confirm("Are you sure?")) {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const deletePromise = axios.delete(`http://localhost:5000/api/products/${id}`, config)
+            const deletePromise = axios.delete(`${API_URL}/api/products/${id}`, config)
                 .then(() => fetchProducts());
 
             toast.promise(deletePromise, {
@@ -197,7 +197,7 @@ export default function AdminPage() {
     const deleteUserHandler = async (id) => {
         if (window.confirm("Are you sure you want to remove this user?")) {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const deletePromise = axios.delete(`http://localhost:5000/api/users/${id}`, config)
+            const deletePromise = axios.delete(`${API_URL}/api/users/${id}`, config)
                 .then(() => fetchUsers());
 
             toast.promise(deletePromise, {
@@ -210,7 +210,7 @@ export default function AdminPage() {
 
     const toggleRoleHandler = async (id) => {
         const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-        const rolePromise = axios.put(`http://localhost:5000/api/users/${id}/role`, {}, config)
+        const rolePromise = axios.put(`${API_URL}/api/users/${id}/role`, {}, config)
             .then(() => fetchUsers());
 
         toast.promise(rolePromise, {

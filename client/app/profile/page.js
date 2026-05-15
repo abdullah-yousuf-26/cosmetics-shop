@@ -25,7 +25,7 @@ export default function ProfilePage() {
             if (!userInfo?.token) return;
             try {
                 const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-                const { data } = await axios.get("http://localhost:5000/api/orders/mine", config);
+                const { data } = await axios.get("${API_URL}/api/orders/mine", config);
                 setOrders(data);
             } catch (err) {
                 console.error("Error fetching orders:", err);

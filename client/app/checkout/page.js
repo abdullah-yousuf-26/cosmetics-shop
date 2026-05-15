@@ -58,7 +58,7 @@ export default function CheckoutPage() {
         };
 
         // Create the promise for toast
-        const orderPromise = axios.post("http://localhost:5000/api/orders", orderData, config)
+        const orderPromise = axios.post("${API_URL}/api/orders", orderData, config)
             .then((res) => {
                 clearCart();
                 // Delay redirect slightly so they see the success message

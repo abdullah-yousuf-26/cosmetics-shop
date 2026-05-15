@@ -29,7 +29,7 @@ export default function LoginForm() {
         setLoading(true);
 
         // Using your live Render URL from env
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "${API_URL}";
 
         const loginRequest = axios.post(`${apiUrl}/api/users/login`, { email, password })
             .then((res) => {

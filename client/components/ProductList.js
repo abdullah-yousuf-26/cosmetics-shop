@@ -11,7 +11,7 @@ export default function ProductList() {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/products");
+      const { data } = await axios.get("${API_URL}/api/products");
       setProducts(data);
     } catch (err) {
       console.error("Failed to fetch products");
@@ -30,7 +30,7 @@ export default function ProductList() {
       };
 
       // Define the delete promise
-      const deleteRequest = axios.delete(`http://localhost:5000/api/products/${id}`, config)
+      const deleteRequest = axios.delete(`${API_URL}/api/products/${id}`, config)
         .then(() => fetchProducts()); // Refresh list on success
 
       toast.promise(
