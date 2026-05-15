@@ -95,7 +95,8 @@ export default function AdminPage() {
         try {
             if (!userInfo?.token) return;
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-            const { data } = await axios.get(`${API_URL}/api/orders`, config);
+            //  Change /orders to /users
+            const { data } = await axios.get(`${API_URL}/api/users`, config); 
             setUsers(data);
         } catch (err) { console.error("User fetch failed."); }
     };
