@@ -13,7 +13,6 @@ const Footer = () => {
             Premium cosmetics curated for your natural glow. Experience luxury at your fingertips.
           </p>
           
-          {/* Manual SVG Social Icons - No Imports Needed */}
           <div className="flex gap-4 mt-8">
             <a href="#" className="text-gray-900 hover:text-blue-400 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -24,13 +23,14 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Column 2: Categories */}
+        {/* Column 2: Categories (Now mapped exactly to your folder routes!) */}
         <div>
           <h4 className="font-black text-gray-900 mb-6 uppercase text-xs tracking-widest">Categories</h4>
-          <ul className="space-y-4 text-sm text-gray-500">
-            <li><Link href="/shop" className="hover:text-[#E91E63] transition-colors">Skincare</Link></li>
-            <li><Link href="/shop" className="hover:text-[#E91E63] transition-colors">Makeup</Link></li>
-            <li><Link href="/shop" className="hover:text-[#E91E63] transition-colors">Fragrance</Link></li>
+          <ul className="space-y-4 text-sm text-gray-500 font-bold">
+            <li><Link href="/category/body-care" className="hover:text-[#E91E63] transition-colors">Skincare</Link></li>
+            <li><Link href="/category/lips" className="hover:text-[#E91E63] transition-colors">Makeup</Link></li>
+            <li><Link href="/category/hair-care" className="hover:text-[#E91E63] transition-colors">Haircare</Link></li>
+            <li><Link href="/category/perfume" className="hover:text-[#E91E63] transition-colors">Fragrance</Link></li>
           </ul>
         </div>
 
