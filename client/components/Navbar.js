@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react"; // Added useState import
 import Link from "next/link";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCartStore } from "../store/useCartStore";
@@ -9,10 +10,21 @@ export default function Navbar() {
   const { userInfo, logout } = useAuthStore();
   const { cart, toggleDrawer } = useCartStore();
   const router = useRouter();
+  
+  // 1. Local state to handle query inputs
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
     logout();
     router.push("/login");
+  };
+
+  // 2. Submission engine to route to your new shop page parameter
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
   };
 
   return (
@@ -23,14 +35,23 @@ export default function Navbar() {
           Sporsho
         </Link>
 
-        {/* Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-xl mx-8 bg-gray-100/50 border border-gray-400 rounded-2xl px-4 py-2 items-center focus-within:bg-white focus-within:border-rose-200 transition-all">
+        {/* ✅ FIXED: Changed from <div> to <form> and attached onSubmit handling */}
+        <form 
+          onSubmit={handleSearch} 
+          className="hidden md:flex flex-1 max-w-xl mx-8 bg-gray-100/50 border border-gray-400 rounded-2xl px-4 py-2 items-center focus-within:bg-white focus-within:border-rose-200 transition-all"
+        >
           <Search size={18} className="text-gray-400" />
-          <input type="text" placeholder="Search for beauty..." className="bg-transparent border-none outline-none ml-2 w-full text-gray-900 placeholder:text-gray-400 font-medium" />
-        </div>
+          <input 
+            type="text" 
+            placeholder="Search for beauty..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} // Capture typography values
+            className="bg-transparent border-none outline-none ml-2 w-full text-gray-900 placeholder:text-gray-400 font-medium" 
+          />
+        </form>
 
         <div className="flex items-center gap-6">
-          {/* CART OPTION - Added cursor-pointer and hover scale */}
+          {/* CART OPTION */}
           <button 
             onClick={toggleDrawer} 
             className="relative text-rose-700 hover:text-yellow-500 transition-all duration-200 cursor-pointer hover:scale-110 active:scale-90"
@@ -59,7 +80,7 @@ export default function Navbar() {
                 <span className="hidden lg:inline text-xs font-bold uppercase tracking-wider">Profile</span>
               </Link>
               
-              {/* Greeting & LOGOUT OPTION - Added cursor-pointer and hover effects */}
+              {/* Greeting & LOGOUT OPTION */}
               <div className="flex items-center gap-3 border-l pl-4 border-gray-200">
                 <span className="text-sm font-semibold text-rose-800 hidden sm:inline">
                   Hi, {userInfo.name.split(' ')[0]}
@@ -82,4 +103,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+} 

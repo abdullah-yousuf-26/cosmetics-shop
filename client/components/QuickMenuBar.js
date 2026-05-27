@@ -8,6 +8,7 @@ const QuickMenuBar = () => {
 
   const menuItems = [
     { name: "Home", slug: "/" },
+    { name: "All Products", slug: "/shop" },
     { name: "Makeup", slug: "/category/lips" }, // slug matches the key in page.js
     { name: "Perfume", slug: "/category/perfume" },
     { name: "Skin Care", slug: "/category/body-care" },
