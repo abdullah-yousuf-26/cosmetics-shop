@@ -6,7 +6,7 @@ import axios from "axios";
 import Navbar from "../../components/Navbar";
 import { MapPin, Phone, Truck, CreditCard, Banknote, Smartphone, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast"; // Added missing import
+import toast from "react-hot-toast"; 
 
 export default function CheckoutPage() {
     const router = useRouter();
@@ -45,7 +45,7 @@ export default function CheckoutPage() {
         const formattedOrderItems = cart.map((item) => ({
             name: item.name,
             qty: item.quantity || 1,
-            image: item.images?.[0] || item.image, // Ensure we pass a string URL
+            image: item.images?.[0] || item.image, 
             price: item.price,
             product: item._id,
         }));
@@ -59,10 +59,9 @@ export default function CheckoutPage() {
         };
 
         // Create the promise for toast
-        const orderPromise = axios.post("${API_URL}/api/orders", orderData, config)
+        const orderPromise = axios.post(`${API_URL}/api/orders`, orderData, config)
             .then((res) => {
                 clearCart();
-                // Delay redirect slightly so they see the success message
                 setTimeout(() => router.push("/profile"), 2000);
                 return res.data;
             });
@@ -111,12 +110,14 @@ export default function CheckoutPage() {
                                 <option value="Other">Outside Dhaka</option>
                             </select>
                             <textarea 
+                                value={address}
                                 placeholder="Full Address (House, Road, Area...)" 
                                 className="w-full p-4 bg-gray-50 border border-transparent focus:border-rose-200 focus:bg-white rounded-2xl outline-none h-28 text-gray-900 transition-all"
                                 onChange={(e) => setAddress(e.target.value)}
                             />
                             <input 
                                 type="text" 
+                                value={phone}
                                 placeholder="Phone Number" 
                                 className="w-full p-4 bg-gray-50 border border-transparent focus:border-rose-200 focus:bg-white rounded-2xl outline-none text-gray-900 transition-all"
                                 onChange={(e) => setPhone(e.target.value)}

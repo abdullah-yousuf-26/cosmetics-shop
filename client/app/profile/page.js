@@ -26,7 +26,7 @@ export default function ProfilePage() {
             if (!userInfo?.token) return;
             try {
                 const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-                const { data } = await axios.get("${API_URL}/api/orders/mine", config);
+                const { data } = await axios.get(`${API_URL}/api/orders/mine`, config);
                 setOrders(data);
             } catch (err) {
                 console.error("Error fetching orders:", err);
@@ -37,7 +37,7 @@ export default function ProfilePage() {
         fetchMyOrders();
     }, [userInfo]);
 
-    // 3. THE FIX: If userInfo is null, show a loader instead of crashing
+    
     if (!userInfo) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-rose-50/20">
