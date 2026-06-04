@@ -215,7 +215,7 @@ export default function ProductDetails() {
 
         </div>
 
-        {/* ✅ NEW DESIGN PIECE: DYNAMICALLY SORTED RELATED PRODUCTS ROW */}
+        {/* Add my NEW DESIGN  PRODUCTS ROW */}
         {relatedProducts.length > 0 && (
           <section className="py-16 border-t border-gray-100 mt-20">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-10 gap-2">
